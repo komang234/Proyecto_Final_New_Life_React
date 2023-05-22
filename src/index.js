@@ -15,3 +15,19 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
+
+console.log("Hagoconsulta-axios"); 
+(async()=>{ 
+  console.log("Hagoasyncconsulta-axios")
+  await axios({ 
+  method:'get',
+  url:'http://localhost:5000/', 
+}) 
+.then(res=>{ console.log("res",res) 
+valores=document.getElementById("valores"); 
+res.data.forEach(actual=>{ 
+  
+}) }) 
+.catch(err=>console.error("error",err)) 
+console.log("Finasyncconsulta-axios") })(); 
+console.log("Finconsulta-axios")
