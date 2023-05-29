@@ -15,7 +15,7 @@ root.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
+ /*
 console.log("Hago consulta-axios"); 
 (async()=>{ 
   console.log("Hago async consulta-axios")
@@ -30,4 +30,4 @@ res.data.forEach(actual=>{
 }) }) 
 .catch(err=>console.error("error",err)) 
 console.log("Fin async consulta-axios") })(); 
-console.log("Fin consulta-axios")
+console.log("Fin consulta-axios") */

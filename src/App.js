@@ -1,5 +1,7 @@
 import logo from './logo.svg';
 import './App.css';
+import './HubSuperior.js'
+import HubSuperior from './HubSuperior.js';
 
 function App() {
   return (
@@ -18,12 +20,13 @@ function App() {
           Learn React
         </a>
       </header>
+    <HubSuperior />
     </div>
   );
 }
 
 export default App;
-
+ /*
 console.log("Hagoconsulta-axios"); 
 (async()=>{ 
   console.log("Hagoasyncconsulta-axios")
@@ -43,4 +46,4 @@ res.data.forEach(actual=>{
 }) }) 
 .catch(err=>console.error("error",err)) 
 console.log("Finasyncconsulta-axios") })(); 
-console.log("Finconsulta-axios")
+console.log("Finconsulta-axios")*/
