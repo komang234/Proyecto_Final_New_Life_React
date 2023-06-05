@@ -11,3 +11,70 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.index {
+  position: relative;
+}
+
+.login-button,
+.register-button {
+  padding: 10px 20px;
+  border-radius: 15px;
+}
+
+.logo{
+  margin-left: 10px;
+  margin-top: 10px;
+}
+
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.gestor {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.gestor-image {
+  max-width: 100%;
+  height: auto;
+}
+
+.center-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.center-name{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.center-buttons button {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: #ebebeb;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.description {
+  text-align: center;
+  margin-top: 20px;
+  
+}
+
+.description span {
+  font-size: 18px;
+  line-height: 1.5;
+}
+
