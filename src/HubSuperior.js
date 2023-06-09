@@ -1,23 +1,54 @@
 import './index.css';
 import './App.css';
+import React from 'react';
+import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
-import gestorImage from './gestor-image.jpg';
 import logo from './logo.png';
 import edificio from './building.svg'
 
 
 function HubSuperior(){
+  const [gestor, setGestor] =  useState([])
+
+  const [isLoading, setIsLoading] = useState(true);
+
+
+
+  useEffect(() => {
+
+      fetch("http://localhost:5000/gestores/1")
+
+        .then((response) => response.json())
+
+        .then((gestorJson) => {
+
+          console.log("gestor",gestorJson)
+
+          setGestor(gestorJson)
+
+          setIsLoading(false)
+
+        });
+
+    }, []);
+  
+
 return (
 <div className="main-screen">
-        <nav className='navbar bg-body-tertiary'>
+        <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid'>
         <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24"/>
-        <ul class="navbar-nav">
-        <button className="login-button nav-item">Iniciar sesión</button>
-        <button className="register-button nav-item">Registrarse</button>
+        <ul className='arreglarbotones'>
+        <li className="nav-item border">
+        <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
+          </li>
+        <li className="nav-item border">
+          <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
+        </li>
         </ul>
         <div>
+        
         <img src={profileImage} alt="Foto de perfil" className="profile-image" />
         </div>
         </div>
@@ -26,13 +57,15 @@ return (
         
         
         <div className="gestor">
-        <img src={gestorImage} alt="Imagen de gestor" className="gestor-image" />
+        {!isLoading &&
+        <img src={gestor.fotoPerfil} alt="Imagen de gestor" className="gestor-image" />
+        }
         </div>
         <h1 className='center-name'> <u>Sergio Pomaroli</u></h1>
         <div className="center-buttons">
-        <button className="reviews-button">Reseñas</button>
-        <button className="faq-button">Preguntas frecuentes</button>
-        <button className="citizenships-button"> Ciudadanias</button>
+        <a className="reviews-button" href="sdfsdf.html">Reseñas</a>
+        <a className="faq-button" href="sdfsdf.html">Preguntas frecuentes</a>
+        <a className="citizenships-button" href="sdfsdf.html"> Ciudadanias</a>
         <img className="faq-button" src={edificio} alt="Ciudadanias"/>
         </div>
 
