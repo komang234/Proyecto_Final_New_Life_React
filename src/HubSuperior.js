@@ -6,7 +6,8 @@ import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
 import edificio from './building.svg'
-
+import pregunta from './question-square-fill.svg'
+import reseñas from './pencil-square.svg'
 
 function HubSuperior(){
   const [gestor, setGestor] =  useState([])
@@ -35,7 +36,7 @@ function HubSuperior(){
   
 
 return (
-<div className="main-screen">
+<div className="Contenedor-Mayor">
         <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid'>
         <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24"/>
@@ -60,12 +61,12 @@ return (
         {!isLoading &&
         <img src={gestor.FotoPerfil} alt="Imagen de gestor" className="gestor-image" />
         }
-        </div>l
+        </div>
         <h1 className='center-name'> <u>{gestor.Nombre}</u></h1>
         <div className="center-buttons">
-        <a className="reviews-button" href="sdfsdf.html">Reseñas</a>
-        <a className="faq-button" href="sdfsdf.html">Preguntas frecuentes</a>
-        <a className="citizenships-button" href="sdfsdf.html"><img className="faq-button" src={edificio} alt="Ciudadanias"/></a>
+        <a className="reviews-button" href="sdfsdf.html"><img className="faq-button logos-botones" src={reseñas} alt="Reseñas"/></a>
+        <a className="faq-button" href="sdfsdf.html"><img className="faq-button logos-botones" src={pregunta} alt="Preguntas Frecuentes"/></a>
+        <a className="citizenships-button" href="sdfsdf.html"><img className="faq-button logos-botones" src={edificio} alt="Ciudadanias"/></a>
         
         </div>
 
@@ -74,7 +75,7 @@ return (
           {gestor.Descripción}
         </span>
       </div>
-      
+      <br></br>
     </div>
 );
 

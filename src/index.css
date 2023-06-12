@@ -49,6 +49,9 @@ li {
   float: right;
 }
 
+.Contenedor-Mayor{
+  background-image: url(https://d22fxaf9t8d39k.cloudfront.net/aca4e72a0a9b8f567c6fd723f7e026e572e3528c47ae126a739ebe7160ef1e9b39652.png);
+}
 
 .profile-image {
   width: 40px;
@@ -90,14 +93,33 @@ li {
 }
 
 .description {
+  display: flex;
+  justify-content: center;
   text-align: center;
   margin-top: 20px;
-  
-}
-
-.description span {
+  max-width: 50%;
+  height: auto;
   font-size: 18px;
   line-height: 1.5;
+  border-radius: 5px;
+    
+}
+
+.reviews-button{
+  display: flex;
+  justify-content: center;
+}
+.citizenships-button{
+  display: flex;
+  justify-content: center;
+}
+.faq-button{
+  display: flex;
+  justify-content: center;
+}
+
+.logos-botones{
+  width: 50%;
 }
 
 .botonesDeAgregacion{

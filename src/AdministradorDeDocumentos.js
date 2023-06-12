@@ -8,9 +8,9 @@ import logo from './logo.png';
 
 
 function AdministradorDeDocumentos(){
- /*
+/* 
   const [gestor, setGestor] =  useState([])
-  const [documento, setDocumento] =  useState([])
+  const [tramite, setTramite] =  useState([])
   const [isLoading, setIsLoading] = useState(true);
 
 
@@ -30,29 +30,25 @@ function AdministradorDeDocumentos(){
           setIsLoading(false)
 
         });
-
-    }, []);
-
-    useEffect(() => {
-
-        fetch("http://localhost:5000/documentos/1")
+        /*
+        fetch("http://localhost:5000/tramites/1")
   
           .then((response) => response.json())
   
-          .then((documentoJson) => {
+          .then((tramiteJson) => {
   
-            console.log("documento",documentoJson)
+            console.log("tramite",tramiteJson)
   
-            setDocumento(documentoJson[0])
+            setTramite(tramiteJson[0])
   
             setIsLoading(false)
   
           });
-  
-      }, []);
-      */
+
+    }, []);*/
+      
     return(
-        <div className="documents-page">
+        <div className="Contenedor-Mayor">
         <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid'>
         <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24"/>
@@ -72,11 +68,13 @@ function AdministradorDeDocumentos(){
         </nav>
         
         <br className='separador'></br>
-        <div className="documentos"> 
+        <div className="tramites"> 
         <h2> Lista de Tramites </h2>
         <hr></hr>
         <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Tramite </button>
         <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Cliente </button>
+        </div>
+        <div> 
         </div>
 
 
