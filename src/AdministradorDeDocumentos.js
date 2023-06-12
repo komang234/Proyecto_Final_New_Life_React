@@ -1,16 +1,16 @@
 import './index.css';
 import './App.css';
 import React from 'react';
-import { useEffect, useState } from "react";
+//import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
-import edificio from './building.svg'
 
 
-function HubSuperior(){
+function AdministradorDeDocumentos(){
+ /*
   const [gestor, setGestor] =  useState([])
-
+  const [documento, setDocumento] =  useState([])
   const [isLoading, setIsLoading] = useState(true);
 
 
@@ -32,10 +32,27 @@ function HubSuperior(){
         });
 
     }, []);
-  
 
-return (
-<div className="main-screen">
+    useEffect(() => {
+
+        fetch("http://localhost:5000/documentos/1")
+  
+          .then((response) => response.json())
+  
+          .then((documentoJson) => {
+  
+            console.log("documento",documentoJson)
+  
+            setDocumento(documentoJson[0])
+  
+            setIsLoading(false)
+  
+          });
+  
+      }, []);
+      */
+    return(
+        <div className="documents-page">
         <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid'>
         <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24"/>
@@ -54,31 +71,17 @@ return (
         </div>
         </nav>
         
-        
-        
-        <div className="gestor">
-        {!isLoading &&
-        <img src={gestor.FotoPerfil} alt="Imagen de gestor" className="gestor-image" />
-        }
-        </div>l
-        <h1 className='center-name'> <u>{gestor.Nombre}</u></h1>
-        <div className="center-buttons">
-        <a className="reviews-button" href="sdfsdf.html">Reseñas</a>
-        <a className="faq-button" href="sdfsdf.html">Preguntas frecuentes</a>
-        <a className="citizenships-button" href="sdfsdf.html"><img className="faq-button" src={edificio} alt="Ciudadanias"/></a>
-        
+        <br className='separador'></br>
+        <div className="documentos"> 
+        <h2> Lista de Tramites </h2>
+        <hr></hr>
+        <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Tramite </button>
+        <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Cliente </button>
         </div>
 
-        <div className="description">
-        <span className='border border-dark'>
-          {gestor.Descripción}
-        </span>
-      </div>
-      
-    </div>
-);
 
-
+        </div>
+    );
 }
 
-export default HubSuperior;
+export default AdministradorDeDocumentos;
