@@ -4,9 +4,10 @@ import './HubSuperior.js'
 //import HubSuperior from './HubSuperior.js';
 
 
+
 function App() {
   return (
-    <AdministradorDeDocumentos />
+    <AdministradorDeDocumentos/>
   );
 }
 

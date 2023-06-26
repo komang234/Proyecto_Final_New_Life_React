@@ -30,23 +30,22 @@ li {
   margin-top: 10px;
   width: 100px;
   height: 80px;
+  justify-content: center;
 }
 
-
+.imagenTarjeta{
+  max-width: 305px;
+  max-height: 250px;
+}
 
 .arreglarbotones{
-  --bs-nav-link-padding-x: 0;
-    --bs-nav-link-padding-y: 0.5rem;
-    --bs-nav-link-font-weight: ;
-    --bs-nav-link-color: var(--bs-navbar-color);
-    --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
-    --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
-    display:flex;
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
   flex-direction: row;
-  float: right;
+  float: left;
+  display: flex;
+  justify-content: left;
 }
 
 .Contenedor-Mayor{
@@ -66,10 +65,18 @@ li {
 }
 
 .gestor-image {
-  max-width: 100%;
-  height: auto;
+  max-width: 500px;
+  max-height: 500px;
 }
 
+.centrarElementos{
+  align-self: center;
+}
+
+.formularioTexto{
+  width: 456px;
+  height: 222px;
+}
 .center-buttons {
   display: flex;
   justify-content: center;
@@ -92,9 +99,11 @@ li {
   cursor: pointer;
 }
 
-.description {
+.Padre{
   display: flex;
   justify-content: center;
+}
+.description {
   text-align: center;
   margin-top: 20px;
   max-width: 50%;
@@ -102,6 +111,8 @@ li {
   font-size: 18px;
   line-height: 1.5;
   border-radius: 5px;
+  align-items: center;
+  align-self: center;
     
 }
 
@@ -122,6 +133,14 @@ li {
   width: 50%;
 }
 
+.separadorTramites{
+  margin: 5px;
+}
+
+.tamañoTarjeta{
+  width: 10px;
+}
+
 .botonesDeAgregacion{
   margin-left: 10px;
 }
@@ -136,3 +155,8 @@ li {
   border: 1px solid #000000;
   transform: rotate(0.04deg);
 }
+
+
+ .izquierda {
+    float: left;
+  }

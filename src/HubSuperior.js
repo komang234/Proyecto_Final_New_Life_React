@@ -38,7 +38,7 @@ function HubSuperior(){
 return (
 <div className="Contenedor-Mayor">
         <nav className='navbar bg-body-tertiary border-header-top'>
-        <div className='container-fluid'>
+        <div className='container-fluid Padre'>
         <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24"/>
         <ul className='arreglarbotones'>
         <li className="nav-item border">
@@ -70,12 +70,20 @@ return (
         
         </div>
 
-        <div className="description">
-        <span className='border border-dark'>
+        <div className="Padre">
+        <span className='border border-dark description'>
           {gestor.Descripción}
         </span>
       </div>
-      <br></br>
+      <br/>
+      <h3 className='center-name'><u>Peticion:</u></h3>
+        <div className='Padre mb-3'>
+          <form> <br/>
+            <input className='centrarElementos formularioTexto form-text' type='text' id='peticion' name='peticion'/> <br/><br/>
+            <input className='centrarElementos btn btn-light border border-dark' type='submit' value='Submit'/> 
+          </form>
+        </div>
+        <br/>
     </div>
 );
 
