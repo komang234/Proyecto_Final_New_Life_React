@@ -1,0 +1,159 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-image: url(https://d22fxaf9t8d39k.cloudfront.net/aca4e72a0a9b8f567c6fd723f7e026e572e3528c47ae126a739ebe7160ef1e9b39652.png);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.index {
+  position: relative;
+}
+
+li {
+  padding: 10px 20px;
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.logo{
+  margin-left: 10px;
+  margin-top: 10px;
+  width: 100px;
+  height: 80px;
+  justify-content: center;
+}
+
+.imagenTarjeta{
+  max-width: 305px;
+  max-height: 250px;
+}
+
+.arreglarbotones{
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+  flex-direction: row;
+  float: left;
+  display: flex;
+  justify-content: left;
+}
+
+.Contenedor-Mayor{
+  background-image: url(https://d22fxaf9t8d39k.cloudfront.net/aca4e72a0a9b8f567c6fd723f7e026e572e3528c47ae126a739ebe7160ef1e9b39652.png);
+}
+
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.gestor {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.gestor-image {
+  max-width: 500px;
+  max-height: 500px;
+}
+
+.centrarElementos{
+  align-self: center;
+}
+
+.formularioTexto{
+  width: 456px;
+  height: 222px;
+}
+.center-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+.center-name{
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.center-buttons a {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 0 10px;
+  background-color: #ebebeb;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.Padre{
+  display: flex;
+  justify-content: center;
+}
+.description {
+  text-align: center;
+  margin-top: 20px;
+  max-width: 50%;
+  height: auto;
+  font-size: 18px;
+  line-height: 1.5;
+  border-radius: 5px;
+  align-items: center;
+  align-self: center;
+    
+}
+
+.reviews-button{
+  display: flex;
+  justify-content: center;
+}
+.citizenships-button{
+  display: flex;
+  justify-content: center;
+}
+.faq-button{
+  display: flex;
+  justify-content: center;
+}
+
+.logos-botones{
+  width: 50%;
+}
+
+.separadorTramites{
+  margin: 5px;
+}
+
+.tamañoTarjeta{
+  width: 10px;
+}
+
+.botonesDeAgregacion{
+  margin-left: 10px;
+}
+
+.separador{
+  position: absolute;
+  width: 1292px;
+  height: 0px;
+  left: 82px;
+  top: 236px;
+
+  border: 1px solid #000000;
+  transform: rotate(0.04deg);
+}
+
