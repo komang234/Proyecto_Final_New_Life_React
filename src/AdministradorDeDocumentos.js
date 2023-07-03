@@ -7,28 +7,28 @@ import profileImage from './perfil.png';
 import logo from './logo.png';
 
 function AdministradorDeDocumentos(){
-/* 
-  const [gestor, setGestor] =  useState([])*/
+
+  const [Cliente, setCliente] =  useState([])
   const [tramites, setTramite] =  useState([])
   const [isLoading, setIsLoading] = useState(true);
 
 
 
   useEffect(() => {
-      /*
-      fetch("http://localhost:5000/gestores/1")
+      
+      fetch("http://localhost:5000/gestores/clientes/1")
 
         .then((response) => response.json())
 
-        .then((gestorJson) => {
+        .then((clienteJson) => {
 
-          console.log("gestor",gestorJson)
+          console.log("cliente",clienteJson)
 
-          setGestor(gestorJson[0])
+          setCliente(clienteJson[0])
 
           setIsLoading(false)
 
-        });*/
+        });
         /*
         console.log("XXXXXXXXXXXXXXXXXXX")
         fetch("http://localhost:5000/tramites/1")
@@ -73,17 +73,6 @@ function AdministradorDeDocumentos(){
         <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Tramite </button>
         <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Cliente </button> <br/><br/>
         </div>
-        { 
-        /*
-          console.log("XXX", tramites)
-          (!isLoading && tramites.forEach( () => {
-           <div>
-            <h4>Jose Augusto Fernandez</h4>
-            <hr className='separadorTramites'></hr>
-            </div>
-          }))
-          */
-        } 
 
          
         <div> 
@@ -128,6 +117,16 @@ function AdministradorDeDocumentos(){
                   </div>
                 </div>
             </div>
+            { 
+             
+             (!isLoading && Cliente.map( (cliente) => {
+             <div>
+             <h4>Ha</h4>
+             <hr className='separadorTramites'></hr>
+             </div>
+               })
+              )
+            } 
           </div>
           
 
