@@ -13,6 +13,8 @@ function HubSuperior(){
   const [gestor, setGestor] =  useState([])
 
   const [isLoading, setIsLoading] = useState(true);
+  const items = ['Item 1', 'Item 2', 'Item 3'];
+
 
 
 
@@ -59,13 +61,13 @@ return (
         <h1 className='center-name'> <u>{gestor.Nombre}</u></h1>
         <h3 className='center-name'>Editor de Tramite</h3>
         <div className="center-buttons">
-        <form> <br/>
+        <form> <br/> 
             Nombre del tramite: <input className='' type='text'name='Nombre'/> <br/><br/>
             Descripción del tramite: <input className='' type='text'name='Descripción'/> <br/><br/>
              
           </form>
         
-        
+        {items[0]}
         </div>
 
         <div className="Padre">
@@ -77,7 +79,7 @@ return (
       <h3 className='center-name'><u>Documentos:</u></h3>
         <div className='Padre mb-3'>
           <form> <br/>
-            <input className='centrarElementos formularioTexto form-text' type='text' id='peticion' name='peticion'/> <br/><br/>
+          <input className='centrarElementos formularioTexto form-text' type='text' id='peticion' name='peticion'/> <br/><br/>
             Agregar estado del tramite: <input className='' type='text'name='Estado Tramites'/> <br/><br/>
             <a href="AdministradorDeDocumentos.js"><input className='centrarElementos btn btn-light border border-dark' type='submit' value='Lista de Tramites' /></a> <br/><br/>
             <input className='centrarElementos btn btn-light border border-dark' type='submit' value='Guardar cambios' /> 
