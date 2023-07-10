@@ -1,13 +1,16 @@
 
-import AdministradorDeDocumentos from './AdministradorDeDocumentos';
+
+//import ModificarTramite from './ModificarTramite';
 import './App.css';
+//import AdministradorDeDocumentos from './AdministradorDeDocumentos';
+import HubSuperior from './HubSuperior';
 //import HubSuperior from './HubSuperior.js';
 
 
 
 function App() {
   return (
-    <AdministradorDeDocumentos/>
+    <HubSuperior/>
   );
 }
 

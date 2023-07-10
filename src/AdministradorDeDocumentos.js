@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
+//import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 function AdministradorDeDocumentos(){
 
@@ -24,37 +25,66 @@ function AdministradorDeDocumentos(){
 
           console.log("cliente",clienteJson)
 
-          setCliente(clienteJson[0])
+          setCliente(clienteJson)
 
           setIsLoading(false)
 
         });
-        /*
-        console.log("XXXXXXXXXXXXXXXXXXX")
-        fetch("http://localhost:5000/tramites/1")
-  
-          .then((response) => response.json())
-  
-          .then((tramiteJson) => {
-  
-            console.log("tramites",tramiteJson)
-  
-            setTramite(tramiteJson[0])
-  
-            setIsLoading(false)
-  
-          });
-          */
+
+
     }, []);
+
+   function listaTramites(id){
+    fetch(`http://localhost:5000/tramites/${id}`)
+    .then((response) => response.json())
+
+        .then((tramiteJson) => {
+
+          console.log("tramites",tramiteJson)
+
+          setTramite(tramiteJson)
+
+          setIsLoading(false)
+        });
+    tramites.map( (tramite) => {
+        return(
+
+       <div className='col-3'>
+          <div className="card">
+          <div className="card-body">
+            <h5 className="card-title">{tramite.Nombre}</h5>
+            <p className="card-text">{tramite.Descripción}</p>
+            <a href="index.html" class="card-link">Ver Mas Informacion</a>
+          </div>
+        </div>
+        </div>
+        )
+        })
+   }
       
+    
+    const listaDeClientes = Cliente.map( (cliente) => {
+     return(
+     <div>
+     <h4>{cliente.Nombre}</h4>
+     <hr className='separadorTramites'></hr>
+      <div className='container'> 
+      <div className='row'> 
+        {listaTramites(cliente.Id)}
+      </div>
+      </div>
+     </div>
+     )
+    })
+
     return(
         <div className="Contenedor-Mayor">
         <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid Padre'>
         <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24"/>
         <ul className='arreglarbotones'>
-              <li class="nav-item border izquierda">
-                <a class='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a> 
+              <li className="nav-item border izquierda">
+                <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a> 
               </li>
               <li className="nav-item border izquierda">
                      <a className='nav-link active' aria-current="page" href="sdfsdf.html" >Registrarse</a>
@@ -75,63 +105,11 @@ function AdministradorDeDocumentos(){
         </div>
 
          
-        <div> 
-          <h4>Jose Augusto Fernandez</h4>
-          <hr className='separadorTramites'></hr>
-          <div className='container'>
-            <div className='row'>
-                <div className='col-3'>
-                  <div className='card'>
-                   <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
-                    <div className='card-body'>
-                      <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-3'>
-                  <div className='card'>
-                   <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
-                    <div className='card-body'>
-                      <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-3'>
-                  <div className='card'>
-                   <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
-                    <div className='card-body'>
-                      <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
-                    </div>
-                  </div>
-                </div>
-                <div className='col-3'>
-                  <div className='card'>
-                   <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
-                    <div className='card-body'>
-                      <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
-                    </div>
-                  </div>
-                </div>
-            </div>
             { 
              
-             (!isLoading && Cliente.map( (cliente) => {
-             <div>
-             <h4>Ha</h4>
-             <hr className='separadorTramites'></hr>
-             </div>
-               })
-              )
+             (!isLoading && listaDeClientes)
             } 
           </div>
-          
-
-        </div>
-        </div>
         
 
     );
