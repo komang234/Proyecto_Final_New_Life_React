@@ -13,10 +13,12 @@ function HubSuperior(){
   const [gestor, setGestor] =  useState([])
 
   const [isLoading, setIsLoading] = useState(true);
+  const items = ['Item 1', 'Item 2', 'Item 3'];
 
 
 
-  useEffect(() => {
+
+  /*useEffect(() => {
 
       fetch("http://localhost:5000/gestores/1")
 
@@ -32,7 +34,7 @@ function HubSuperior(){
 
         });
 
-    }, []);
+    }, []);*/
   
 
 return (
@@ -41,12 +43,6 @@ return (
         <div className='container-fluid Padre'>
         <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24"/>
         <ul className='arreglarbotones'>
-        <li className="nav-item border">
-        <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
-          </li>
-        <li className="nav-item border">
-          <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
-        </li>
         </ul>
         <div>
         
@@ -63,11 +59,15 @@ return (
         }
         </div>
         <h1 className='center-name'> <u>{gestor.Nombre}</u></h1>
+        <h3 className='center-name'>Editor de Tramite</h3>
         <div className="center-buttons">
-        <a className="reviews-button" href="sdfsdf.html"><img className="faq-button logos-botones" src={reseñas} alt="Reseñas"/></a>
-        <a className="faq-button" href="sdfsdf.html"><img className="faq-button logos-botones" src={pregunta} alt="Preguntas Frecuentes"/></a>
-        <a className="citizenships-button" href="sdfsdf.html"><img className="faq-button logos-botones" src={edificio} alt="Ciudadanias"/></a>
+        <form> <br/> 
+            Nombre del tramite: <input className='' type='text'name='Nombre'/> <br/><br/>
+            Descripción del tramite: <input className='' type='text'name='Descripción'/> <br/><br/>
+             
+          </form>
         
+        {items[0]}
         </div>
 
         <div className="Padre">
@@ -76,11 +76,13 @@ return (
         </span>
       </div>
       <br/>
-      <h3 className='center-name'><u>Peticion:</u></h3>
+      <h3 className='center-name'><u>Documentos:</u></h3>
         <div className='Padre mb-3'>
           <form> <br/>
-            <input className='centrarElementos formularioTexto form-text' type='text' id='peticion' name='peticion'/> <br/><br/>
-            <input className='centrarElementos btn btn-light border border-dark' type='submit' value='Submit'/> 
+          <input className='centrarElementos formularioTexto form-text' type='text' id='peticion' name='peticion'/> <br/><br/>
+            Agregar estado del tramite: <input className='' type='text'name='Estado Tramites'/> <br/><br/>
+            <a href="AdministradorDeDocumentos.js"><input className='centrarElementos btn btn-light border border-dark' type='submit' value='Lista de Tramites' /></a> <br/><br/>
+            <input className='centrarElementos btn btn-light border border-dark' type='submit' value='Guardar cambios' /> 
           </form>
         </div>
         <br/>
