@@ -76,7 +76,6 @@ function AdministradorDeDocumentos(){
         <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Tramite </button>
         <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Cliente </button> <br/><br/>
         { 
-          console.log("XXX", tramites)
           (!isLoading && tramites.forEach( () => {
            <div>
             <h4>Jose Augusto Fernandez</h4>
@@ -94,7 +93,7 @@ function AdministradorDeDocumentos(){
                    <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
                     <div className='card-body'>
                       <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
+                      <button className='btn btn-light'>Editar</button>
                     </div>
                   </div>
                 </div>
@@ -103,7 +102,7 @@ function AdministradorDeDocumentos(){
                    <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
                     <div className='card-body'>
                       <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
+                      <button className='btn btn-light'>Editar</button>
                     </div>
                   </div>
                 </div>
@@ -112,7 +111,7 @@ function AdministradorDeDocumentos(){
                    <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
                     <div className='card-body'>
                       <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
+                      <button className='btn btn-light'>Editar</button>
                     </div>
                   </div>
                 </div>
@@ -121,7 +120,7 @@ function AdministradorDeDocumentos(){
                    <img src={profileImage} className='card-img-top imagenTarjeta' alt="..."/>
                     <div className='card-body'>
                       <h5 className='card-title'>Card title</h5>
-                      <a href="#" className='btn btn-light'>Editar</a>
+                      <button href="#" className='btn btn-light'>Editar</button>
                     </div>
                   </div>
                 </div>
