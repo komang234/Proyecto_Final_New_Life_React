@@ -19,7 +19,7 @@ function ListaTramites({cliente}) {
             <div className="card-body">
               <h5 className="card-title">{tramite.Nombre}</h5>
               <p className="card-text">{tramite.Descripción}</p>
-              <button className="btn btn-primary">Go somewhere</button>
+              <button className="btn btn-primary">Ver información</button> <button className="btn btn-primary">Editar</button>
             </div>
           </div>
         </div>

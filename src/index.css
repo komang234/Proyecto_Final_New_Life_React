@@ -47,9 +47,13 @@ li {
   display: flex;
   justify-content: left;
 }
-
+html{
+  background-image: url(https://d22fxaf9t8d39k.cloudfront.net/aca4e72a0a9b8f567c6fd723f7e026e572e3528c47ae126a739ebe7160ef1e9b39652.png);
+  background-size: cover;
+}
 .Contenedor-Mayor{
   background-image: url(https://d22fxaf9t8d39k.cloudfront.net/aca4e72a0a9b8f567c6fd723f7e026e572e3528c47ae126a739ebe7160ef1e9b39652.png);
+  background-size: cover;
 }
 
 .profile-image {

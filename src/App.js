@@ -1,14 +1,24 @@
 
 import AdministradorDeDocumentos from './AdministradorDeDocumentos.js';
 import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 //import HubSuperior from './HubSuperior.js';
-//import EditorDeTramites from './EditorDeTramites'
-
+import EditorDeTramites from './EditorDeTramites'
+import CrearCuenta from './CrearCuenta';
+import HubSuperior from './HubSuperior.js';
+import InicioSesion from './InicioSesion.js';
 
 
 function App() {
   return (
-    <AdministradorDeDocumentos/>
+    <BrowserRouter>
+    <Routes>
+      <Route path="/crearCuenta" element={<CrearCuenta/>}></Route>
+	    <Route path="/inicioSesion" element={<InicioSesion />}></Route>
+      <Route path="/gestor" element={<HubSuperior />}></Route>
+      <Route path="/tramite" element={<AdministradorDeDocumentos />}></Route>
+    </Routes>
+    </BrowserRouter>
   );
 }
 
