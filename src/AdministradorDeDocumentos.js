@@ -8,9 +8,9 @@ import logo from './logo.png';
 //import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 function ListaTramites({cliente}) {
-  { console.log("111 lista de tramites") }
+  console.log("111 lista de tramites") 
   let lista = JSON.parse(cliente.ListaTramites)
-  { console.log(lista) }
+  console.log(lista) 
   return (
     lista.map((tramite) => {
       return (
