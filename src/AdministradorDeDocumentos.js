@@ -27,7 +27,43 @@ function ListaTramites({cliente}) {
     })
   )
 }
+function uploadFile() {
+ 
+   const fileInput = document.getElementById('fileInput');
+  
+  
+   const file = fileInput.files[0];
 
+   if (file) {
+      const formData = new FormData();
+      formData.append('file', file);
+
+
+      const xhr = new XMLHttpRequest();
+
+
+      xhr.onreadystatechange = function () {
+          if (xhr.readyState === 4) {
+              if (xhr.status === 200) {
+              
+                  document.getElementById('status').innerHTML = 'File uploaded successfully.';
+              } else {
+          
+                  document.getElementById('status').innerHTML = 'Error: ' + xhr.statusText;
+              }
+          }
+      };
+
+
+      xhr.open('POST', '/your-upload-endpoint', true);
+
+      xhr.send(formData);
+  } else {
+
+      document.getElementById('status').innerHTML = 'Please select a file to upload.';
+   
+  }
+}
 function ListaDeClientes({clientes}) {
   return (
     clientes.map((c) => {
@@ -64,9 +100,6 @@ function AdministradorDeDocumentos() {
         setIsLoading(false)
       });
   }, []);
-
-  
-
   return (
     <div className="Contenedor-Mayor">
       <nav className='navbar bg-body-tertiary border-header-top'>
@@ -94,6 +127,9 @@ function AdministradorDeDocumentos() {
         <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Cliente </button> <br /><br />
       </div>
 
+      <input type="file" id="fileInput"/>
+    <button onclick="uploadFile()">Subir Archivo</button>
+    <div id="status"></div>
 
       {
 
