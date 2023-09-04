@@ -2,6 +2,7 @@ import './index.css';
 import './App.css';
 import React from 'react';
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
@@ -27,21 +28,21 @@ function HubSuperior() {
     if (loggedUserJSON) {
       const user = JSON.parse(loggedUserJSON)
       setCliente(user)
-      console.log(cliente)
     }
-  })
+  }, []);
   return (
     <div className="Contenedor-Mayor">
       <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid Padre'>
           <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24" />
           <ul className='arreglarbotones'>
-            <li className="nav-item border">
+          <Link to="/crearCuenta"><li className="nav-item border">
               <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
-            </li>
+            </li></Link>
+          <Link to="/inicioSesion">
             <li className="nav-item border">
               <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
-            </li>
+            </li></Link>
           </ul>
           <div>
 
