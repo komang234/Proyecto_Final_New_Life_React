@@ -2,22 +2,27 @@
 import AdministradorDeDocumentos from './AdministradorDeDocumentos.js';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import EditorDeTramites from './EditorDeTramites'
+import EditorDeTramites from './EditorDeTramites'
 import CrearCuenta from './CrearCuenta';
 import HubSuperior from './HubSuperior.js';
 import InicioSesion from './InicioSesion.js';
+import { ContextProvider } from './contextState.js';
+import { useState } from 'react';
 
 
 function App() {
+  const [login, setLogin] = useState([])
   return (
+    <ContextProvider>
     <BrowserRouter>
     <Routes>
       <Route path="/crearCuenta" element={<CrearCuenta/>}></Route>
-	    <Route path="/inicioSesion" index element={<InicioSesion />}></Route>
+	    <Route index element={<InicioSesion />}></Route>
       <Route path="/gestor" element={<HubSuperior />}></Route>
-      <Route path="/tramite" element={<AdministradorDeDocumentos />}></Route>
+      <Route path="/tramite" element={<EditorDeTramites />}></Route>
     </Routes>
     </BrowserRouter>
+    </ContextProvider>
   );
 }
 

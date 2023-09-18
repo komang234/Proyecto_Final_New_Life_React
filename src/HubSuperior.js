@@ -1,7 +1,7 @@
 import './index.css';
 import './App.css';
 import React from 'react';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
@@ -9,8 +9,10 @@ import logo from './logo.png';
 import edificio from './building.svg'
 import pregunta from './question-square-fill.svg'
 import reseñas from './pencil-square.svg'
+import { ActionTypes, useContextState } from "./contextState";
 
 function HubSuperior() {
+  const { contextState, setContextState } = useContextState();
   const [gestor, setGestor] = useState([])
   const [isLoading, setIsLoading] = useState(true);
   const [cliente, setCliente] = useState([])
@@ -45,8 +47,12 @@ function HubSuperior() {
             </li></Link>
           </ul>
           <div>
-
+            {!isLoading && !contextState.login === undefined  &&
             <img src={profileImage} alt="Foto de perfil" className="profile-image" />
+            }
+            {!isLoading && contextState.login &&
+              <img src={contextState.login.FotoPerfil} alt="Imagen de gestor" className="gestor-image" />
+            }
           </div>
         </div>
       </nav>
