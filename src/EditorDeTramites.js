@@ -21,7 +21,7 @@ function EditorDeTramites(){
 
         console.log("etiqueta",etiquetaJson)
 
-        setEtiqueta(etiquetaJson)
+        setEtiqueta(etiquetaJson) 
 
         setIsLoading(false)
 
@@ -29,7 +29,43 @@ function EditorDeTramites(){
 
 
   }, []);
-
+  function uploadFile() {
+ 
+    const fileInput = document.getElementById('fileInput');
+   
+   
+    const file = fileInput.files[0];
+ 
+    if (file) {
+       const formData = new FormData();
+       formData.append('file', file);
+ 
+ 
+       const xhr = new XMLHttpRequest();
+ 
+ 
+       xhr.onreadystatechange = function () {
+           if (xhr.readyState === 4) {
+               if (xhr.status === 200) {
+               
+                   document.getElementById('status').innerHTML = 'File uploaded successfully.';
+               } else {
+           
+                   document.getElementById('status').innerHTML = 'Error: ' + xhr.statusText;
+               }
+           }
+       };
+ 
+ 
+       xhr.open('POST', '/your-upload-endpoint', true);
+ 
+       xhr.send(formData);
+   } else {
+ 
+       document.getElementById('status').innerHTML = 'Please select a file to upload.';
+    
+   }
+ }
 return (
 <div className="Contenedor-Mayor">
         <nav className='navbar bg-body-tertiary border-header-top'>
@@ -61,18 +97,30 @@ return (
       <h3 className='center-name'><u>Documentos:</u></h3>
         <div className='Padre mb-3'>
           <form> <br/>
-            <input className='centrarElementos formularioTexto form-text' type='text' id='peticion' name='peticion'/> <br/><br/>
             
-            <div class="btn-group">
-                <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                 Right-aligned menu example
-            </button>
-            <ul class="dropdown-menu dropdown-menu-end">
-             <li><button class="dropdown-item" type="button">Action</button></li>
-              <li><button class="dropdown-item" type="button">Another action</button></li>
-             <li><button class="dropdown-item" type="button">Something else here</button></li>
-           </ul>
-          </div>
+            
+            Agregar nuevo estado del tramite: <input className='' type='text'name='Estado Tramites'/> <br/><br/>
+            <input type="file" id="fileInput"/>
+            <button onclick="uploadFile()">Subir Archivo</button>
+            <div id="status"></div>
+
+      {
+
+        (!isLoading)
+      } 
+            
+            <a href="AdministradorDeDocumentos.js"><input className='centrarElementos btn btn-light border border-dark' type='submit' value='Lista de Tramites' /></a> <br/><br/>
+            <input className='centrarElementos btn btn-light border border-dark' type='submit' value='Guardar cambios' />
+            <br className='separador'></br>
+            <div className="tramites">
+
+        <hr></hr>
+      
+      </div>
+
+      
+            
+          
            {
             /* <div className="dropdown">
             <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -91,9 +139,7 @@ return (
             <br/><br/>
 
 
-            Agregar nuevo estado del tramite: <input className='' type='text'name='Estado Tramites'/> <br/><br/>
-            <a href="AdministradorDeDocumentos.js"><input className='centrarElementos btn btn-light border border-dark' type='submit' value='Lista de Tramites' /></a> <br/><br/>
-            <input className='centrarElementos btn btn-light border border-dark' type='submit' value='Guardar cambios' /> 
+            
           </form>
         </div>
         <br/>

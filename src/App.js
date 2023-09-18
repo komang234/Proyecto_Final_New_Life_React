@@ -6,8 +6,6 @@ import EditorDeTramites from './EditorDeTramites'
 import CrearCuenta from './CrearCuenta';
 import HubSuperior from './HubSuperior.js';
 import InicioSesion from './InicioSesion.js';
-import { ContextProvider } from './contextState.js';
-import { useState } from 'react';
 
 
 function App() {
@@ -19,7 +17,7 @@ function App() {
       <Route path="/crearCuenta" element={<CrearCuenta/>}></Route>
 	    <Route index element={<InicioSesion />}></Route>
       <Route path="/gestor" element={<HubSuperior />}></Route>
-      <Route path="/tramite" element={<EditorDeTramites />}></Route>
+      <Route path="/tramite" element={<AdministradorDeDocumentos />}></Route>
     </Routes>
     </BrowserRouter>
     </ContextProvider>
