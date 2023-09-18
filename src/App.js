@@ -2,10 +2,11 @@
 import AdministradorDeDocumentos from './AdministradorDeDocumentos.js';
 import './App.css';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-//import EditorDeTramites from './EditorDeTramites'
+import EditorDeTramites from './EditorDeTramites'
 import CrearCuenta from './CrearCuenta';
 import HubSuperior from './HubSuperior.js';
 import InicioSesion from './InicioSesion.js';
+
 
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
 	    <Route path="/inicioSesion" index element={<InicioSesion />}></Route>
       <Route path="/gestor" element={<HubSuperior />}></Route>
       <Route path="/tramite" element={<AdministradorDeDocumentos />}></Route>
+      <Route path="/eTramite" element={<EditorDeTramites />}></Route>
     </Routes>
     </BrowserRouter>
   );
