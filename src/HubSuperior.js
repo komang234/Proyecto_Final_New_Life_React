@@ -22,7 +22,7 @@ function HubSuperior() {
       .then((gestorJson) => {
         console.log("gestor", gestorJson)
         setGestor(gestorJson[0])
-        setIsLoading(false)
+        setContextState({ newValue: false, type: "SET_LOADING" });
       });
   }, []);
   useEffect(() => {

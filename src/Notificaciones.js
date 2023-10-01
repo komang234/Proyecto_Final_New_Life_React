@@ -9,28 +9,26 @@ import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import { ActionTypes, useContextState } from "./contextState";
 
-function PreguntasFrecuentes() {
+function Notificaciones() {
     const { contextState, setContextState } = useContextState();
     const [isLoading, setIsLoading] = useState(true);
-    const [preguntas, setPreguntas] = useState([])
+    const [notificaciones, setNotificaciones] = useState([])
     useEffect(() => {
-        fetch("http://localhost:5000/preguntasFrecuentes/1")
+        fetch(`http://localhost:5000/notificaciones/${contextState.login.id}`)
             .then((response) => response.json())
             .then((gestorJson) => {
                 console.log("gestor", gestorJson)
-                setPreguntas(gestorJson[0])
+                setPreguntas(gestorJson)
                 setContextState({ newValue: false, type: "SET_LOADING" });
             });
     }, []);
 
-    function ListaDePreguntas({ preguntas }) {
+    function ListaDeNotificaciones({ notificaciones }) {
         return (
-            preguntas.map((p) => {
+            notificaciones.map((n) => {
                 return(
                 <div className='item'>
-                    <h3>{p.titulo}</h3>
-                    <hr />
-                    <p>{p.descripcion}</p>
+                    <p>{n.descripcion}</p>
                 </div>
                 )
             }
@@ -39,7 +37,7 @@ function PreguntasFrecuentes() {
 
     };
 
-    return (
+    return contextState.login ? (
         <div className="Contenedor-Mayor">
             <nav className='navbar bg-body-tertiary border-header-top'>
                 <div className='container-fluid Padre'>
@@ -77,12 +75,18 @@ function PreguntasFrecuentes() {
             <div className="gestor">
                 {
 
-                    (!isLoading && <ListaDePreguntas preguntas={preguntas} />)
+                    (!isLoading && <ListaDeNotificaciones notificaciones={notificaciones} />)
                 }
             </div>
             <br />
         </div>
+    ) : (
+        <div className="Contenedor-Mayor">
+            <div className='contenedorAlerta'>
+                <p className='alerta'>  Atención! No se le permite usar la pagina debido a que no ha iniciado sesión. Vaya a la página principal para hacerlo.</p>
+            </div>
+        </div>  
     );
 
 }
-export default PreguntasFrecuentes;
+export default Notificaciones;

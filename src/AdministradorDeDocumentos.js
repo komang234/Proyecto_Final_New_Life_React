@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
+import { ActionTypes, useContextState } from "./contextState";
 //import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 function ListaTramites({cliente}) {
@@ -85,6 +86,7 @@ function ListaDeClientes({clientes}) {
 
 function AdministradorDeDocumentos() {
 
+  const { contextState, setContextState } = useContextState();
   const [clientes, setClientes] = useState([])
   const [isLoading, setIsLoading] = useState(true);
 
@@ -97,10 +99,10 @@ function AdministradorDeDocumentos() {
       .then((clienteJson) => {
         console.log("cliente", clienteJson)
         setClientes(clienteJson)
-        setIsLoading(false)
+        setContextState({ newValue: false, type: "SET_LOADING" });
       });
   }, []);
-  return (
+  return contextState.login ? (
     <div className="Contenedor-Mayor">
       <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid Padre'>
@@ -138,7 +140,13 @@ function AdministradorDeDocumentos() {
     </div>
 
 
-  );
+  ):(
+    <div className="Contenedor-Mayor">
+        <div className='contenedorAlerta'>
+            <p className='alerta'>  Atención! No se le permite usar la pagina debido a que no ha iniciado sesión. Vaya a la página principal para hacerlo.</p>
+        </div>
+    </div>  
+);
 }
 
 export default AdministradorDeDocumentos;

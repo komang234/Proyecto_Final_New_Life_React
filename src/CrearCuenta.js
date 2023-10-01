@@ -9,7 +9,7 @@ import { useNavigate } from 'react-router-dom';
 
 function CrearCuenta() {
     const navigate = useNavigate();
-    
+    const { contextState, setContextState } = useContextState();
     const [userInfo, setUserInfo] =  useState([])
     const [cliente, setCliente] = useState([])
     
@@ -34,7 +34,12 @@ function CrearCuenta() {
             window.localStorage.setItem(
               'loggedNoteAppUser', JSON.stringify(userInfo)
             )
+            setContextState({
+              newValue: userInfo,
+              type: ActionTypes.setLogin,
+            });
           }
+        
     }
     useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
@@ -48,7 +53,7 @@ function CrearCuenta() {
         fetch('http://localhost:5000/clientes', requestOptions)
                .then(response => response.json())
                .then(result => setUserInfo(result))
-               .then(navigate('/'));
+               .then(navigate('/gestor'));
    },[requestOptions])
 
    

@@ -171,3 +171,16 @@ html{
   margin: 5;
 
 }
+
+.contenedorAlerta{
+  flex: 1;
+  background-color: "#7e638c";
+  align-items: "center";
+  justify-content: "center";
+}
+
+.alerta {
+  font-weight: "bold";
+  font-size: 20;
+  color: "#ff634f";
+}
