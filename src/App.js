@@ -7,9 +7,10 @@ import CrearCuenta from './CrearCuenta';
 import HubSuperior from './HubSuperior.js';
 import InicioSesion from './InicioSesion.js';
 
+import { ContextProvider } from './contextState';
+import PreguntasFrecuentes from './PreguntasFrecuentes.js';
 
 function App() {
-  const [login, setLogin] = useState([])
   return (
     <ContextProvider>
     <BrowserRouter>
@@ -18,6 +19,7 @@ function App() {
 	    <Route index element={<InicioSesion />}></Route>
       <Route path="/gestor" element={<HubSuperior />}></Route>
       <Route path="/tramite" element={<AdministradorDeDocumentos />}></Route>
+      <Route path='/preguntas' element={<PreguntasFrecuentes/>}></Route>
     </Routes>
     </BrowserRouter>
     </ContextProvider>

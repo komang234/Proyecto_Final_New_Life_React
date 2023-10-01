@@ -17,7 +17,7 @@ function HubSuperior() {
   const [isLoading, setIsLoading] = useState(true);
   const [cliente, setCliente] = useState([])
   useEffect(() => {
-    fetch("http://localhost:5000/gestores/1")
+    fetch("http://localhost:1433/gestores/1")
       .then((response) => response.json())
       .then((gestorJson) => {
         console.log("gestor", gestorJson)
@@ -37,21 +37,29 @@ function HubSuperior() {
       <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid Padre'>
           <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24" />
-          <ul className='arreglarbotones'>
-          <Link to="/crearCuenta"><li className="nav-item border">
-              <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
-            </li></Link>
-          <Link to="/inicioSesion">
-            <li className="nav-item border">
-              <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
-            </li></Link>
-          </ul>
           <div>
             {!isLoading && !contextState.login === undefined  &&
+            <>
+            <ul className='arreglarbotones'>
+            <Link to="/crearCuenta"><li className="nav-item border">
+                <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
+              </li></Link>
+            <Link to="/inicioSesion">
+              <li className="nav-item border">
+                <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
+              </li></Link>
+            </ul>
+            <div>
             <img src={profileImage} alt="Foto de perfil" className="profile-image" />
+            </div>
+            </>
             }
             {!isLoading && contextState.login &&
+              <>
+              <div>
               <img src={contextState.login.FotoPerfil} alt="Imagen de gestor" className="gestor-image" />
+              </div>
+              </>
             }
           </div>
         </div>

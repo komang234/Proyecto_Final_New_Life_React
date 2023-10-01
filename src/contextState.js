@@ -2,10 +2,12 @@ import React, { useContext } from "react";
 
 export const initialState = {
     login: undefined,
+    isLoading: false,
   };
   
   export const ActionTypes = {
     setLogin: "SET_LOGIN",
+    setIsLoading: "SET_ISLOADING"
   };
   
   export const reducer = (state = initialState, action) => {
@@ -13,6 +15,9 @@ export const initialState = {
     switch (action.type) {
       case ActionTypes.setLogin: {
         return { ...state, login: action.newValue };
+      }
+      case ActionTypes.setIsLoading: {
+        return { ...state, isLoading: action.newValue };
       }
       default: {
         return state;

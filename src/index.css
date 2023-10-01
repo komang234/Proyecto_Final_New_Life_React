@@ -164,3 +164,10 @@ html{
  .izquierda {
     float: left;
   }
+
+.item{
+  background-color: white;
+  padding: 20;
+  margin: 5;
+
+}

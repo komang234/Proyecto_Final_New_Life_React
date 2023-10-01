@@ -1,23 +1,20 @@
 import './index.css';
 import './App.css';
-import React, { useContext } from 'react';
-import { useEffect, useState, useRef } from "react";
+import React from 'react';
+import {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.png';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 import { ActionTypes, useContextState } from './contextState';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function InicioSesion() {
-
-  const userRef = useRef();
-  const errRef = useRef();
+  const navigate = useNavigate();
 
   const { contextState, setContextState } = useContextState();
 
   const [cliente, setCliente] = useState([])
-  const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
 
   /*useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
@@ -27,21 +24,32 @@ function InicioSesion() {
     }
   }, [])*/
 
-  const login = async () => {
-    console.log(cliente)
-    axios.get(`http://localhost:5000/clientes?email=${cliente.email}&psw=${cliente.psw}`
-    ).then(response => response.data[0])
-      .then(res => {
-        console.log("res", res)
+  function verificacion() {
+    axios.get(`http://localhost:1433/clientes?email=${cliente.email}&psw=${cliente.psw}`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      return response.json(); // Conviertes la respuesta a formato JSON
+    })
+      .then(async (response) => {
+        console.log(response.status)
+        if(response.status > 300){
+          alert(JSON.stringify("error"));
+          console.error("error");
+          alert("Los datos no son correctos, vuelva a intentarlo");
+          setContextState({ newValue: false, type: "SET_LOADING" });
+          return;
+        }
+        const token = await response.json();
+        console.log(token);
+        setContextState({
+          newValue: token,
+          type: ActionTypes.setLogin,
+        });
+        setContextState({ newValue: false, type: "SET_LOADING" });
+        navigate('/gestor')
       })
-      .catch(err => console.error("error", err))
-    //console.log("Finasyncconsulta-axios")
-    //();
-    console.log("Finconsulta-axios")
-    // 
-    /// El error esta aca, falta cerrar y ver porque no devuelven bien los datos
-    // 
-    //console.log(inicio)
   }
 
   const handleSubmit = async (event) => {
@@ -55,32 +63,8 @@ function InicioSesion() {
     }
     console.log(nuevoCliente)
     setCliente(nuevoCliente)
-    try {
-      const response = await axios.get(`http://localhost:5000/clientes?email=${cliente.email}&psw=${cliente.psw}`,
-        JSON.stringify(cliente),
-        {
-          headers: { 'Content-Type': 'application/json' },
-          withCredentials: true
-        }
-      );
-      console.log(JSON.stringify(response?.data));
-      setContextState({
-        newValue: response,
-        type: ActionTypes.setLogin,
-      });
-      <Link to="/gestor"></Link>
-    } catch (err) {
-      if (!err?.response) {
-        setErrMsg('No Server Response');
-      } else if (err.response?.status === 400) {
-        setErrMsg('Missing Username or Password');
-      } else if (err.response?.status === 401) {
-        setErrMsg('Unauthorized');
-      } else {
-        setErrMsg('Login Failed');
-      }
-      errRef.current.focus();
-    }
+    setContextState({ newValue: true, type: "SET_LOADING" });
+    verificacion()
     /*if (inicio !== undefined) {
       window.localStorage.setItem(
         'loggedNoteAppUser', JSON.stringify(inicio)

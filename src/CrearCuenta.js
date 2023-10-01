@@ -5,8 +5,10 @@ import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.png';
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 function CrearCuenta() {
+    const navigate = useNavigate();
     
     const [userInfo, setUserInfo] =  useState([])
     const [cliente, setCliente] = useState([])
@@ -45,7 +47,8 @@ function CrearCuenta() {
     useEffect(()=>{
         fetch('http://localhost:5000/clientes', requestOptions)
                .then(response => response.json())
-               .then(result => setUserInfo(result));
+               .then(result => setUserInfo(result))
+               .then(navigate('/'));
    },[requestOptions])
 
    
