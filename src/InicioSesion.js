@@ -29,7 +29,7 @@ function InicioSesion() {
 };
 
   function verificacion() {
-    fetch(`http://localhost:1433/clientes/sesion`, requestOptions)
+    fetch(`http://localhost:5000/clientes/sesion`, requestOptions)
     .then(response => {
       if (!response.ok) {
         if(response.status > 300){
