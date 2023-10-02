@@ -17,7 +17,7 @@ function HubSuperior() {
   const [isLoading, setIsLoading] = useState(true);
   const [cliente, setCliente] = useState([])
   useEffect(() => {
-    fetch("http://localhost:1433/gestores/1")
+    fetch("http://localhost:5000/gestores/1")
       .then((response) => response.json())
       .then((gestorJson) => {
         console.log("gestor", gestorJson)

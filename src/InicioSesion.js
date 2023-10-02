@@ -7,7 +7,6 @@ import logo from './logo.png';
 import { Link } from 'react-router-dom';
 import { ActionTypes, useContextState } from './contextState';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
 
 function InicioSesion() {
   const navigate = useNavigate();
@@ -23,17 +22,16 @@ function InicioSesion() {
       setCliente(user)
     }
   }, [])*/
+  const requestOptions = {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({email: cliente.email, psw: cliente.contraseña})
+};
 
   function verificacion() {
-    axios.get(`http://localhost:1433/clientes?email=${cliente.email}&psw=${cliente.psw}`)
+    fetch(`http://localhost:1433/clientes/sesion`, requestOptions)
     .then(response => {
       if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-      return response.json(); // Conviertes la respuesta a formato JSON
-    })
-      .then(async (response) => {
-        console.log(response.status)
         if(response.status > 300){
           alert(JSON.stringify("error"));
           console.error("error");
@@ -41,7 +39,9 @@ function InicioSesion() {
           setContextState({ newValue: false, type: "SET_LOADING" });
           return;
         }
-        const token = await response.json();
+      }
+      else if(response.ok) {
+        const token = response.json();
         console.log(token);
         setContextState({
           newValue: token,
@@ -49,6 +49,15 @@ function InicioSesion() {
         });
         setContextState({ newValue: false, type: "SET_LOADING" });
         navigate('/gestor')
+      }
+      return response.json(); // Conviertes la respuesta a formato JSON
+    })
+      .then(async (response) => {
+        console.log(response.status)
+
+      })
+      .catch((error) => {
+        console.error("error")
       })
   }
 
