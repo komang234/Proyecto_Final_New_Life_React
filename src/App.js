@@ -15,6 +15,7 @@ function App() {
     <ContextProvider>
     <BrowserRouter>
     <Routes>
+      <Route path="/editorTramites" element={<EditorDeTramites/>}></Route>
       <Route path="/crearCuenta" element={<CrearCuenta/>}></Route>
 	    <Route index element={<InicioSesion />}></Route>
       <Route path="/gestor" element={<HubSuperior />}></Route>
