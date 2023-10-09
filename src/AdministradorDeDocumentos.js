@@ -2,6 +2,7 @@ import './index.css';
 import './App.css';
 import React from 'react';
 import { useEffect, useState } from "react";
+import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
@@ -9,6 +10,9 @@ import { ActionTypes, useContextState } from "./contextState";
 //import { responsivePropType } from 'react-bootstrap/esm/createUtilityClasses';
 
 function ListaTramites({cliente}) {
+
+  const { contextState, setContextState } = useContextState();
+
   console.log("111 lista de tramites") 
   let lista = JSON.parse(cliente.ListaTramites)
   console.log(lista) 
@@ -107,17 +111,27 @@ function AdministradorDeDocumentos() {
       <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid Padre'>
           <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24" />
-          <ul className='arreglarbotones'>
-            <li className="nav-item border izquierda">
-              <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
-            </li>
-            <li className="nav-item border izquierda">
-              <a className='nav-link active' aria-current="page" href="sdfsdf.html" >Registrarse</a>
-            </li>
-          </ul>
-          <div>
-            <img src={profileImage} alt="Foto de perfil" className="profile-image" />
-          </div>
+          {!contextState.isLoading && !contextState.login &&
+              <>
+                <ul className='arreglarbotones'>
+                  <Link to="/crearCuenta"><li className="nav-item border">
+                    <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
+                  </li></Link>
+                  <Link to="/inicioSesion">
+                    <li className="nav-item border">
+                      <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
+                    </li></Link>
+                </ul>
+                <div>
+                  <img src={profileImage} alt="Foto de perfil" className="profile-image" />
+                </div>
+              </>
+            }
+            {!contextState.isLoading && contextState.login &&
+              <div>
+                <img src={contextState.login.FotoPerfil} alt="Foto de perfil" className="profile-image" />
+              </div>
+            }
         </div>
       </nav>
 

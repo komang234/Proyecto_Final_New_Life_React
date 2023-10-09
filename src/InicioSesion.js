@@ -1,7 +1,6 @@
 import './index.css';
 import './App.css';
 import React from 'react';
-import {useState} from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.png';
 import { Link } from 'react-router-dom';
@@ -13,7 +12,6 @@ function InicioSesion() {
 
   const { contextState, setContextState } = useContextState();
 
-  const [cliente, setCliente] = useState([])
 
   /*useEffect(() => {
     const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
@@ -22,58 +20,50 @@ function InicioSesion() {
       setCliente(user)
     }
   }, [])*/
-  const requestOptions = {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({email: cliente.email, psw: cliente.contraseña})
-};
+  
 
-  function verificacion() {
-    fetch(`http://localhost:5000/clientes/sesion`, requestOptions)
-    .then(response => {
-      if (!response.ok) {
-        if(response.status > 300){
-          alert(JSON.stringify("error"));
-          console.error("error");
-          alert("Los datos no son correctos, vuelva a intentarlo");
-          setContextState({ newValue: false, type: "SET_LOADING" });
-          return;
-        }
-      }
-      else if(response.ok) {
-        const token = response.json();
+  async function verificacion(cliente) {
+    try{
+      const requestOptions = {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({email: cliente.email, psw: cliente.psw})
+    };
+    const response = await fetch(`http://localhost:5000/clientes/sesion`, requestOptions)
+    if(response.ok) {
+        const token = await response.json();
         console.log(token);
         setContextState({
-          newValue: token,
+          newValue: token[0],
           type: ActionTypes.setLogin,
         });
         setContextState({ newValue: false, type: "SET_LOADING" });
         navigate('/gestor')
       }
-      return response.json(); // Conviertes la respuesta a formato JSON
-    })
-      .then(async (response) => {
-        console.log(response.status)
+      await console.log(response.status)
+      return response; // Conviertes la respuesta a formato JSON
+      
 
-      })
-      .catch((error) => {
-        console.error("error")
-      })
+    }
+    catch(error){
+      console.error("Error:", error);
+      alert("Los datos no son correctos, vuelva a intentarlo");
+          setContextState({ newValue: false, type: "SET_LOADING" });
+          return;
+    }
   }
 
   const handleSubmit = async (event) => {
-    console.log('Se guardan los datos')
     event.preventDefault();
-
-    const datos = new FormData(event.target)
+    console.log('Se guardan los datos')
+    const {Email , Contrasena } = event.target.elements
     const nuevoCliente = {
-      email: datos.get("Email"),
-      psw: datos.get("Contrasena"),
+      email: Email.value,
+      psw: Contrasena.value,
     }
     console.log(nuevoCliente)
-    setCliente(nuevoCliente)
     setContextState({ newValue: true, type: "SET_LOADING" });
-    verificacion()
+    await verificacion(nuevoCliente)
     /*if (inicio !== undefined) {
       window.localStorage.setItem(
         'loggedNoteAppUser', JSON.stringify(inicio)
@@ -93,7 +83,6 @@ function InicioSesion() {
         </div>
       </nav>
 
-      {console.log(cliente)}
       <div className="centro">
 
       </div>

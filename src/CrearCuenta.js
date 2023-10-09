@@ -6,6 +6,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.png';
 import { Link } from "react-router-dom";
 import { useNavigate } from 'react-router-dom';
+import { ActionTypes, useContextState } from "./contextState";
 
 function CrearCuenta() {
     const navigate = useNavigate();
@@ -19,9 +20,9 @@ function CrearCuenta() {
         body: JSON.stringify({ nombre: (userInfo.nombre) , dni: (userInfo.dni), email: userInfo.email, psw: userInfo.contraseña, foto: userInfo.foto})
     };
 
-     const handleSubmit = (e) => {
-        e.preventDefault();
-        const datos = new FormData(e.target)
+     const handleSubmit = (event) => {
+      event.preventDefault();
+        const datos = new FormData(event.target)
         const nuevoCliente = {
             nombre: datos.get("Nombre"),
             email: datos.get("Email"),
