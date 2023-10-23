@@ -7,7 +7,7 @@ import logo from './logo.png';
 import { Link } from 'react-router-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
-import { ActionTypes, useContextState } from "./contextState";
+import { useContextState } from "./contextState";
 
 function PreguntasFrecuentes() {
     const { contextState, setContextState } = useContextState();

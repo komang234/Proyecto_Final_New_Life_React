@@ -14,13 +14,40 @@ function CrearCuenta() {
     const [userInfo, setUserInfo] =  useState([])
     const [cliente, setCliente] = useState([])
     
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ nombre: (userInfo.nombre) , dni: (userInfo.dni), email: userInfo.email, psw: userInfo.contraseña, foto: userInfo.foto})
-    };
+    
 
-     const handleSubmit = (event) => {
+    async function verificacion(cliente){
+      try{
+        const requestOptions = {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre: (userInfo.nombre) , dni: (userInfo.dni), email: userInfo.email, psw: userInfo.contraseña, foto: userInfo.foto})
+      };
+      
+        const response = await fetch('http://localhost:5000/clientes', requestOptions)
+        if(response.ok){
+          const token = await response.json();
+          console.log(token)
+          setContextState({
+            newValue: token[0],
+            type: ActionTypes.setLogin,
+          });
+          setContextState({ newValue: false, type: "SET_LOADING" });
+          navigate('/gestor')
+        }
+        await console.log(response.status)
+        return response;  
+   
+      }
+      catch(error){
+        console.error("Error:", error);
+        alert("Los datos no son correctos, vuelva a intentarlo");
+            setContextState({ newValue: false, type: "SET_LOADING" });
+            return;
+      }
+    }
+
+     const handleSubmit = async (event) => {
       event.preventDefault();
         const datos = new FormData(event.target)
         const nuevoCliente = {
@@ -32,6 +59,7 @@ function CrearCuenta() {
         }
         setUserInfo(nuevoCliente)
         if(userInfo !== undefined){
+            verificacion(nuevoCliente)
             window.localStorage.setItem(
               'loggedNoteAppUser', JSON.stringify(userInfo)
             )
@@ -42,20 +70,14 @@ function CrearCuenta() {
           }
         
     }
-    useEffect(() => {
+    /*useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
         if(loggedUserJSON) {
           const user = JSON.parse(loggedUserJSON)
           setCliente(user)
         } 
-      })
+      })*/
     
-    useEffect(()=>{
-        fetch('http://localhost:5000/clientes', requestOptions)
-               .then(response => response.json())
-               .then(result => setUserInfo(result))
-               .then(navigate('/gestor'));
-   },[requestOptions])
 
    
     
@@ -78,14 +100,14 @@ function CrearCuenta() {
     <h2 className='center-name'>Crea tu cuenta</h2>
     <div className="center-buttons">
 
-    <form  onSubmit={handleSubmit()}> 
+    <form  onSubmit={handleSubmit}> 
             Escribe tu nombre y tu apellido: <input className='' type='text'name='Nombre' required/> <br/><br/>
             Escribe tu email: <input className='' type='text'name='Email' required/> <br/><br/>
             Escribe tu contraseña: <input className='' type='text'name='Contraseña' required/> <br/><br/>
             Escribe tu DNI: <input className='' type='text'name='DNI' required/> <br/><br/>
             Agregar Foto de Perfil: <input className='' type='link'name='Link Foto'/> <br/><br/>
 
-            <h6 className='center-name'>¿Ya tienes un cuenta hecha?</h6><h6 className='center-name'> <Link to="/inicioSesion"><font color="lightblue">Inicia Sesion</font></Link> </h6>
+            
              <br/>
              <div className='Padre mb-3'>
              <br/>
@@ -98,7 +120,7 @@ function CrearCuenta() {
           
     
     </div>
-    
+    <h6 className='center-name'>¿Ya tienes un cuenta hecha?</h6><h6 className='center-name'> <Link to="/inicioSesion"><font color="lightblue">Inicia Sesion</font></Link> </h6>
       <br/>
     </div>
     );

@@ -21,14 +21,15 @@ function InicioSesion() {
     }
   }, [])*/
   
+  
 
   async function verificacion(cliente) {
-    try{
+    try{  
       const requestOptions = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({email: cliente.email, psw: cliente.psw})
-    };
+    }; 
     const response = await fetch(`http://localhost:5000/clientes/sesion`, requestOptions)
     if(response.ok) {
         const token = await response.json();
@@ -41,7 +42,7 @@ function InicioSesion() {
         navigate('/gestor')
       }
       await console.log(response.status)
-      return response; // Conviertes la respuesta a formato JSON
+      return response; 
       
 
     }

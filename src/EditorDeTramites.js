@@ -4,8 +4,10 @@ import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
+import { useContextState } from "./contextState";
 
 function EditorDeTramites() {
+  const { contextState, setContextState } = useContextState();
   const [etiqueta, setEtiqueta] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [tramiteData, setTramiteData] = useState({
@@ -93,7 +95,7 @@ function EditorDeTramites() {
 
           Agregar nuevo estado del tramite: <input className='' type='text' name='Estado Tramites' /> <br /><br />
           <input type="file" id="fileInput" />
-          <button onclick="uploadFile()">Subir Archivo</button>
+          <button onClick="uploadFile()">Subir Archivo</button>
           <div id="status"></div>
 
           {
