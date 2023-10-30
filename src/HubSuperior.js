@@ -9,7 +9,7 @@ import edificio from './building.svg';
 import pregunta from './question-square-fill.svg';
 import reseñas from './pencil-square.svg';
 import { useContextState } from "./contextState";
-import FormularioSolicitud from './FormPeticion'; // Importa el formulario de solicitud
+import FormularioSolicitud from './FormPeticion'; 
 
 function HubSuperior() {
   const { contextState, setContextState } = useContextState();
@@ -49,9 +49,14 @@ function HubSuperior() {
               </div>
             </>
           }
-          {!contextState.isLoading && contextState.login &&
+          {!contextState.isLoading && contextState.login &&  contextState.login.FotoPerfil !== '' &&
             <div>
               <img src={contextState.login.FotoPerfil} alt="Foto de perfil" className="profile-image" />
+            </div>
+          }
+          {!contextState.isLoading && contextState.login &&  contextState.login.FotoPerfil === '' &&
+            <div>
+              <img src={profileImage} alt="Foto de perfil" className="profile-image" />
             </div>
           }
         </div>
@@ -84,11 +89,15 @@ function HubSuperior() {
         </span>
       </div>
       <br />
+      {contextState.login && !contextState.login.Descripción &&
+      <>
       <h3 className='center-name'><u>Peticion:</u></h3>
       <div className='Padre mb-3'>
-        <FormularioSolicitud /> {/* Integra el formulario de solicitud aquí */}
+        <FormularioSolicitud /> 
       </div>
       <br />
+      </>
+      }
     </div>
   );
 }

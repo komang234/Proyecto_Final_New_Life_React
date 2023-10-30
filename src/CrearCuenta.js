@@ -16,14 +16,16 @@ function CrearCuenta() {
     
     
 
-    async function verificacion(cliente){
+    async function verificacion(userInfo){
+      console.log("entra a verificacion")
       try{
-        const requestOptions = {
+        console.log(userInfo)
+        const requestOptions = {                                                                                                                                                                          
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre: (userInfo.nombre) , dni: (userInfo.dni), email: userInfo.email, psw: userInfo.contraseña, foto: userInfo.foto})
+          body: JSON.stringify({ nombre: (userInfo.nombre) , dni: (userInfo.dni), email: (userInfo.email), psw: (userInfo.contraseña), foto: (userInfo.fotoPerfil)})
       };
-      
+      console.log(requestOptions)
         const response = await fetch('http://localhost:5000/clientes', requestOptions)
         if(response.ok){
           const token = await response.json();
@@ -33,7 +35,8 @@ function CrearCuenta() {
             type: ActionTypes.setLogin,
           });
           setContextState({ newValue: false, type: "SET_LOADING" });
-          navigate('/gestor')
+          alert("La cuenta fue creada. Inicie sesion para poder utilizarla");
+          navigate('/inicioSesion')
         }
         await console.log(response.status)
         return response;  
@@ -55,21 +58,23 @@ function CrearCuenta() {
             email: datos.get("Email"),
             contraseña: datos.get("Contraseña"),
             dni: datos.get("DNI"),
-            fotoPerfil: datos.get("Link Foto"),
+            fotoPerfil: datos.get("LinkFoto"),
         }
-        setUserInfo(nuevoCliente)
+        verificacion(nuevoCliente)
+        
+        /*
         if(userInfo !== undefined){
             verificacion(nuevoCliente)
             window.localStorage.setItem(
               'loggedNoteAppUser', JSON.stringify(userInfo)
-            )
+            ) */
             setContextState({
-              newValue: userInfo,
+              newValue: nuevoCliente,
               type: ActionTypes.setLogin,
             });
           }
         
-    }
+    
     /*useEffect(() => {
         const loggedUserJSON = window.localStorage.getItem('loggedNoteAppUser')
         if(loggedUserJSON) {
@@ -101,11 +106,11 @@ function CrearCuenta() {
     <div className="center-buttons">
 
     <form  onSubmit={handleSubmit}> 
-            Escribe tu nombre y tu apellido: <input className='' type='text'name='Nombre' required/> <br/><br/>
+            Escribe tu nombre y apellido: <input className='' type='text'name='Nombre' required/> <br/><br/>
             Escribe tu email: <input className='' type='text'name='Email' required/> <br/><br/>
             Escribe tu contraseña: <input className='' type='text'name='Contraseña' required/> <br/><br/>
             Escribe tu DNI: <input className='' type='text'name='DNI' required/> <br/><br/>
-            Agregar Foto de Perfil: <input className='' type='link'name='Link Foto'/> <br/><br/>
+            Agregar Foto de Perfil: <input className='' type='text' name='LinkFoto'/> <br/><br/>
 
             
              <br/>

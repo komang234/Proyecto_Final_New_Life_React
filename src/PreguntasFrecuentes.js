@@ -1,6 +1,6 @@
 import './index.css';
 import './App.css';
-import React from 'react';
+import React, { useDebugValue } from 'react';
 import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css';
 import logo from './logo.png';
@@ -12,29 +12,34 @@ import { useContextState } from "./contextState";
 function PreguntasFrecuentes() {
     const { contextState, setContextState } = useContextState();
     const [isLoading, setIsLoading] = useState(true);
-    const [preguntas, setPreguntas] = useState([])
+    const [preguntas, setPreguntas] = useState(undefined)
     useEffect(() => {
         fetch("http://localhost:5000/preguntasFrecuentes/1")
             .then((response) => response.json())
             .then((gestorJson) => {
                 console.log("gestor", gestorJson)
-                setPreguntas(gestorJson[0])
+                setPreguntas(gestorJson)
                 setContextState({ newValue: false, type: "SET_LOADING" });
             });
     }, []);
 
-    function ListaDePreguntas({ preguntas }) {
+    function ListaDePreguntas(preguntas1) {
+        let preguntas2 = preguntas1.preguntas1
+        console.log(preguntas2)
         return (
-            preguntas.map((p) => {
-                return(
-                <div className='item'>
-                    <h3>{p.titulo}</h3>
-                    <hr />
-                    <p>{p.descripcion}</p>
-                </div>
+            preguntas2.map((p) => {
+                return (
+                    <>
+                    <div className='item border border-dark'>
+                        <h3>{p.Titulo}</h3>
+                       
+                        <hr />
+                        <p>{p.Descripcion}</p>
+                    </div>
+                    <br/>
+                    </>
                 )
-            }
-            )
+            })
         )
 
     };
@@ -61,12 +66,15 @@ function PreguntasFrecuentes() {
                                 </div>
                             </>
                         }
-                        {!isLoading && contextState.login &&
-                            <>
-                                <div>
-                                    <img src={contextState.login.FotoPerfil} alt="Imagen de gestor" className="gestor-image" />
-                                </div>
-                            </>
+                        {!contextState.isLoading && contextState.login && contextState.login.FotoPerfil !== '' &&
+                            <div>
+                                <img src={contextState.login.FotoPerfil} alt="Foto de perfil" className="profile-image" />
+                            </div>
+                        }
+                        {!contextState.isLoading && contextState.login && contextState.login.FotoPerfil === '' &&
+                            <div>
+                                <img src={profileImage} alt="Foto de perfil" className="profile-image" />
+                            </div>
                         }
                     </div>
                 </div>
@@ -76,8 +84,7 @@ function PreguntasFrecuentes() {
 
             <div className="gestor">
                 {
-
-                    (!isLoading && <ListaDePreguntas preguntas={preguntas} />)
+                    (preguntas !== undefined && <ListaDePreguntas preguntas1={preguntas}/>)
                 }
             </div>
             <br />

@@ -15,9 +15,9 @@ function App() {
     <ContextProvider>
     <BrowserRouter>
     <Routes>
+     <Route index path='/inicioSesion' element={<InicioSesion />}></Route>
       <Route path="/editorTramites" element={<EditorDeTramites/>}></Route>
       <Route path="/crearCuenta" element={<CrearCuenta/>}></Route>
-      <Route index path='/inicioSesion' element={<InicioSesion />}></Route>
       <Route path="/gestor" element={<HubSuperior />}></Route>
       <Route path="/tramite" element={<AdministradorDeDocumentos />}></Route>
       <Route path='/preguntas' element={<PreguntasFrecuentes/>}></Route>
