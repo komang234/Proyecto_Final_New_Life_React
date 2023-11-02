@@ -69,9 +69,11 @@ function HubSuperior() {
       </div>
       <h1 className='center-name'> <u>{gestor.Nombre}</u></h1>
       <div className="center-buttons">
+        <Link to="/resenas">
         <a className="reviews-button" href="sdfsdf.html">
           <img className="faq-button logos-botones" src={reseñas} alt="Reseñas" />
         </a>
+        </Link>
         <Link to="/preguntas">
         <a className="faq-button" href="sdfsdf.html">
           <img className="faq-button logos-botones" src={pregunta} alt="Preguntas Frecuentes" />

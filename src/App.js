@@ -6,6 +6,7 @@ import EditorDeTramites from './EditorDeTramites'
 import CrearCuenta from './CrearCuenta';
 import HubSuperior from './HubSuperior.js';
 import InicioSesion from './InicioSesion.js';
+import Reseñas from './Reseñas.js';
 
 import { ContextProvider } from './contextState';
 import PreguntasFrecuentes from './PreguntasFrecuentes.js';
@@ -21,6 +22,7 @@ function App() {
       <Route path="/gestor" element={<HubSuperior />}></Route>
       <Route path="/tramite" element={<AdministradorDeDocumentos />}></Route>
       <Route path='/preguntas' element={<PreguntasFrecuentes/>}></Route>
+      <Route path='/resenas' element={<Reseñas/>}></Route>
     </Routes>
     </BrowserRouter> 
     </ContextProvider>
