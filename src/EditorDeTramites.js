@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
 import { useContextState } from "./contextState";
+import { Link } from 'react-router-dom';
 
 function EditorDeTramites() {
   const { contextState, setContextState } = useContextState();
@@ -66,11 +67,35 @@ function EditorDeTramites() {
       <nav className='navbar bg-body-tertiary border-header-top'>
         <div className='container-fluid Padre'>
           <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24" />
-          <ul className='arreglarbotones'>
-          </ul>
-          <div>
-            <img src={profileImage} alt="Foto de perfil" className="profile-image" />
-          </div>
+          {!contextState.isLoading && !contextState.login &&
+            <>
+              <ul className='arreglarbotones'>
+                <Link to="/inicioSesion">
+                  <li className="nav-item border">
+                    <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
+                  </li>
+                </Link>
+                <Link to="/crearCuenta">
+                  <li className="nav-item border">
+                    <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
+                  </li>
+                </Link>
+              </ul>
+              <div>
+                <img src={profileImage} alt="Foto de perfil" className="profile-image" />
+              </div>
+            </>
+          }
+          {!contextState.isLoading && contextState.login &&  contextState.login.FotoPerfil !== '' &&
+            <div>
+              <img src={contextState.login.FotoPerfil} alt="Foto de perfil" className="profile-image" />
+            </div>
+          }
+          {!contextState.isLoading && contextState.login &&  contextState.login.FotoPerfil === '' &&
+            <div>
+              <img src={profileImage} alt="Foto de perfil" className="profile-image" />
+            </div>
+          }
         </div>
       </nav>
 

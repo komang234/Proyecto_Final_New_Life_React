@@ -18,7 +18,7 @@ function Notificaciones() {
             .then((response) => response.json())
             .then((gestorJson) => {
                 console.log("gestor", gestorJson)
-                setPreguntas(gestorJson)
+                setNotificaciones(gestorJson)
                 setContextState({ newValue: false, type: "SET_LOADING" });
             });
     }, []);
