@@ -44,9 +44,10 @@ function AdministradorDeDocumentos() {
               <div className="card">
                 <img class="card-img-top" src={tramite.Imagen} alt="Imagen del tramite" />
                 <div className="card-body">
+                  {console.log(tramite)}
                   <h5 className="card-title">{tramite.Nombre}</h5>
                   <p className="card-text">{tramite.Descripción}</p>
-                  <Link to={`/detalleTramite/${tramite.Id}`}><button className="btn btn-primary">Ver información</button></Link> <Link to="/editorTramites"><button className="btn btn-primary">Editar trámite</button></Link>
+                  <Link to={`/detalleTramite/${tramite.id}`}><button className="btn btn-primary">Ver información</button></Link> <Link to="/editorTramites"><button className="btn btn-primary">Editar trámite</button></Link>
                 </div>
               </div>
             </div>
@@ -119,8 +120,7 @@ function AdministradorDeDocumentos() {
           <div className="tramites">
             <h2> Lista de Tramites </h2>
             <hr></hr>
-            <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Tramite </button>
-            <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Cliente </button> <br /><br />
+            <button type="button" className='btn btn-light derecha border botonesDeAgregacion'> + Agregar Tramite </button> <br /><br />
           </div>
 
           {

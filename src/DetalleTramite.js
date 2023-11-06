@@ -5,23 +5,30 @@ import 'bootstrap/dist/css/bootstrap.css';
 import profileImage from './perfil.png';
 import logo from './logo.png';
 import { useContextState } from "./contextState";
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 
 function DetalleTramite() {
     const { contextState, setContextState } = useContextState();
     const [tramite, setTramite] = useState([])
     const valores = window.location.search;
     const urlParams = new URLSearchParams(valores);
+    let { idTramite } = useParams();
+
 
     useEffect(() => {
-
-        fetch(`http://localhost:5000/tramites/detalle/${urlParams.get('idTramite')}`)
+        console.log(idTramite)
+        try{
+        fetch(`http://localhost:5000/tramites/detalle/${idTramite}`)
             .then((response) => response.json())
             .then((clienteJson) => {
                 console.log("cliente", clienteJson)
                 setTramite(clienteJson)
                 setContextState({ newValue: false, type: "SET_LOADING" });
             });
+        }
+        catch{
+            console.log("no se puedo hacer la busquedas")
+        }
     }, []);
 
     return contextState.login ? (
@@ -29,25 +36,6 @@ function DetalleTramite() {
             <nav className='navbar bg-body-tertiary border-header-top'>
                 <div className='container-fluid Padre'>
                     <img className='navbar-brand logo' src={logo} alt="New Life" width="30" height="24" />
-                    {!contextState.isLoading && !contextState.login &&
-                        <>
-                            <ul className='arreglarbotones'>
-                                <Link to="/inicioSesion">
-                                    <li className="nav-item border">
-                                        <a className='nav-link active' aria-current="page" href="sdfs.html">Iniciar sesión</a>
-                                    </li>
-                                </Link>
-                                <Link to="/crearCuenta">
-                                    <li className="nav-item border">
-                                        <a className='nav-link active' aria-current="page" href="sdfsdf.html">Registrarse</a>
-                                    </li>
-                                </Link>
-                            </ul>
-                            <div>
-                                <img src={profileImage} alt="Foto de perfil" className="profile-image" />
-                            </div>
-                        </>
-                    }
                     {!contextState.isLoading && contextState.login && contextState.login.FotoPerfil !== '' &&
                         <div>
                             <img src={contextState.login.FotoPerfil} alt="Foto de perfil" className="profile-image" />
@@ -60,11 +48,13 @@ function DetalleTramite() {
                     }
                 </div>
             </nav>
-
+            
+            {console.log(contextState.login)}
 
             {
-                !contextState.isLoading && contextState.login && contextState.login.Id === tramite.IdCliente || contextState.login.Id === tramite.IdGestor &&
+                !contextState.isLoading && contextState.login && tramite.IdCliente === contextState.login.Id || tramite.IdGestor === contextState.login.Id &&
                 <>
+                    {console.log("Puede entrar")}
                     <h3 className='center-name'>Tramite</h3>
                     <br />
                     <div className='Padre mb-3'>

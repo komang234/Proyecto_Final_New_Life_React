@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 
 export const initialState = {
     login: undefined,
-    isLoading: false,
+    isLoading: false
   };
   
   export const ActionTypes = {
