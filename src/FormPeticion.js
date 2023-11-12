@@ -17,11 +17,11 @@ function FormularioSolicitud() {
 
     try {
       const response = await axios.post("http://localhost:5000/peticiones", { 
-        hearders: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             idg: 1,
             idc: contextState.login.id,
-            desc: e.target.peticion
+            desc: solicitud
         })
        });
 
